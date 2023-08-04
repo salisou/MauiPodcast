@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiPodcast.MVVM.Views.HomePodbox"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             BackgroundColor="{StaticResource DarkBack}"
+             NavigationPage.HasNavigationBar="False"
+             Title="HomePodbox">
+
+    <Page.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource DarkBack}"/>
+    </Page.Behaviors>
+    <Grid IgnoreSafeArea="{OnPlatform Android=False, iOS=True}"  RowDefinitions=".05*, .15*,.45*,.05*, .45*,.3*" >
+
+            <!--Header-->
+            <Grid RowDefinitions=".1*, .1*, .55*, .15*, .15*">
+
+                    <Grid  ColumnDefinitions="*,*,*" Margin="20">
+
+                        <Image  HorizontalOptions="Start" 
+                                x:Name="imgMenu"
+                                IsVisible="true"
+                                VerticalOptions="Center" 
+                                Source="menu"/>
+
+                        <Grid Grid.Column="1">
+                            <Label Grid.Column="1"
+                                       FontSize="30"
+                                       Text="Pod"
+                                       TextColor="{StaticResource BPrimary}"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"
+                                       HorizontalTextAlignment="Start"/>
+                            <Label Grid.Column="2"
+                                       FontSize="30"
+                                       FontAttributes="None"
+                                       Margin="0,0,10,0"
+                                       Text="box"
+                                       TextColor="WHite"
+                                       VerticalOptions="End"
+                                       HorizontalTextAlignment="End"/>
+                        </Grid>
+
+                    </Grid>
+            </Grid>
+
+                <!--Content Podcast-->
+        <Grid Grid.Row="2" Margin="0,-26,0,0" >
+
+            <CarouselView ItemsSource="{Binding Podbox}" 
+                                  PeekAreaInsets="0">
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="20"
+                                                   Orientation="Horizontal"
+                                                   SnapPointsAlignment="Center"
+                                                   SnapPointsType="MandatorySingle"/>
+                </CarouselView.ItemsLayout>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Grid.RowSpan="3"
+                                Stroke="{StaticResource BGGray}"
+                                BackgroundColor="{StaticResource Gray900}"
+                                HeightRequest="250"
+                                StrokeShape="RoundRectangle 30,30,30,30"
+                                StrokeThickness="2">
+                            <Grid RowDefinitions=".2*,.6*,.2*">
+                                <Image Grid.RowSpan="3" 
+                                       Aspect="AspectFill" 
+                                       Source="{Binding Image}"/>
+                                <RoundRectangle Grid.RowSpan="3"
+                                        CornerRadius="30"
+                                        HeightRequest="300"
+                                        Opacity=".7">
+                                    <RoundRectangle.Fill>
+                                        <LinearGradientBrush EndPoint="0,1">
+                                            <GradientStop Offset="0" Color="Transparent"/>
+                                            <GradientStop Offset="1" Color="#030005"/>
+                                        </LinearGradientBrush>
+                                    </RoundRectangle.Fill>
+                                </RoundRectangle>
+
+                                <VerticalStackLayout Margin="15,15,0,0">
+                                    <Label FontSize="30"
+                                           TextColor="White"
+                                           Text="{Binding Description}"/>
+                                </VerticalStackLayout>
+
+
+                                <VerticalStackLayout Grid.Row="2" Margin="15,15,0,0">
+                                    <Grid RowDefinitions=".1*,.1*,.2*,.2*" ColumnDefinitions="*,*">
+
+                                        <Label Text="{Binding Name}"
+                                               FontSize="14"
+                                               TextColor="DarkGray"/>
+                                        <Label FontSize="18"
+                                               Grid.Row="2"
+                                               Text="{Binding Author}"
+                                               TextColor="White"/>
+
+                                        <StackLayout Grid.RowSpan="3"
+                                                     Grid.Column="3"
+                                                     VerticalOptions="Center" 
+                                                     HorizontalOptions="CenterAndExpand"
+                                                     Grid.ColumnSpan="3">
+                                            <ImageButton x:Name="imgPlay" 
+                                                         Source="play_button" 
+                                                         HeightRequest="45" 
+                                                         Clicked="imgPlay_Clicked"/>
+                                        </StackLayout>
+                                    </Grid>
+
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+                <CarouselView.Shadow>
+                    <Shadow Brush="Black"
+                            Radius="40"
+                            Offset="20,20"
+                            Opacity="0.8"/>
+                </CarouselView.Shadow>
+            </CarouselView>
+        </Grid>
+
+        <Grid Grid.Row="2"
+              Margin="0,-20"
+              HeightRequest="50"
+              WidthRequest="300"
+              VerticalOptions="EndAndExpand"
+              HorizontalOptions="StartAndExpand">
+            <Border BackgroundColor="{StaticResource BPrimary}"
+                    Stroke="#6E557C"
+                    HorizontalOptions="Center"
+                    StrokeThickness="2"
+                    StrokeShape="RoundRectangle 30 30 30 30">
+
+                <Label Text="Expore Tonpics"
+                        Margin="20,0"
+                        VerticalOptions="Center"
+                        FontSize="25"
+                        TextColor="{StaticResource DarkBack}"/>
+            </Border>
+
+        </Grid>
+
+        <Grid Grid.Row="3" HeightRequest="250" VerticalOptions="Start" >
+            <CollectionView Margin="20" ItemsSource="{Binding Podbox2}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="20" Orientation="Horizontal"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HeightRequest="180" WidthRequest="180">
+                            <Border Stroke="#6E557C"
+                                    StrokeThickness="2"
+                                    HorizontalOptions="Center"
+                                    StrokeShape="RoundRectangle 20,20,20,20">
+                                <Grid Grid.Row="2" RowDefinitions=".2*">
+
+                                    <Image Aspect="AspectFill"
+                                           Source="{Binding Image1}"/>
+                                    <Label FontSize="17"
+                                           Grid.Column="1"
+                                           Margin="18"
+                                           Text="{Binding Name1}"
+                                           TextColor="White"
+                                           VerticalOptions="End"
+                                           HorizontalTextAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Shadow>
+                    <Shadow Brush="Black"
+                            Radius="40"
+                            Offset="10,20"
+                            Opacity="0.5"/>
+                </CollectionView.Shadow>
+            </CollectionView>
+        </Grid>
+
+        
+        <VerticalStackLayout Grid.Row="5" Margin="20,-45" Spacing="20">
+            <HorizontalStackLayout RadioButtonGroup.GroupName="MenuCategories"
+                                   Spacing="20" 
+                                   VerticalOptions="Center">
+               
+                <StackLayout BindableLayout.ItemsSource="{Binding Podbox2}" Orientation="Horizontal">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <!--<Button Text="{Binding contentBox}"
+                                        CornerRadius="50"
+                                        HeightRequest="50"
+                                        Margin="0,0,10,30"
+                                        FontAttributes="Bold"
+                                        FontSize="10"
+                                        FontFamily="Icons"
+                                        TextColor="{StaticResource BPrimary}"
+                                        WidthRequest="110"
+                                        BorderWidth="1"
+                                        BackgroundColor="Transparent"
+                                        BorderColor="{StaticResource BPrimary}"/>-->
+                            <RadioButton Content="{Binding contentBox}">
+                                    <RadioButton.ControlTemplate>
+                                        <ControlTemplate>
+                                            <Grid>
+                                                <Border x:Name="Container" 
+                                                       Stroke="{StaticResource BGGray}"
+                                                       WidthRequest="120">
+                                                    <Border.StrokeShape>
+                                                        <RoundRectangle CornerRadius="10, 10,10,10"/>
+                                                    </Border.StrokeShape>
+                                                    <Label x:Name="TextLabel"
+                                                           HorizontalOptions="Center"
+                                                           Text="{TemplateBinding Content}"
+                                                           VerticalOptions="Center"/>
+                                                </Border>
+                                                
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroupList>
+                                                        <VisualStateGroup x:Name="CheckedStartes">
+
+                                                            <VisualState x:Name="Checked">
+                                                                <VisualState.Setters>
+                                                                    <Setter TargetName="TextLabel" Property="Label.TextColor" Value="{StaticResource Brown}"/>
+                                                                    <Setter TargetName="Container" Property="Border.BackgroundColor" Value="{StaticResource BGGray}"/>
+                                                                    <Setter TargetName="Container" Property="Border.Stroke" Value="{StaticResource Brown}"/>
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+                                                            <VisualState x:Name="UnChecked">
+                                                                <VisualState.Setters>
+                                                                    <Setter TargetName="TextLabel" Property="Label.TextColor" Value="{StaticResource LightGray}"/>
+                                                                    <Setter TargetName="Container" Property="Border.BackgroundColor" Value="{StaticResource DarkGray}"/>
+                                                                    <Setter TargetName="Container" Property="Border.Stroke" Value="{StaticResource DarkGray}"/>
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateGroupList>
+                                                </VisualStateManager.VisualStateGroups>
+
+                                                
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </RadioButton.ControlTemplate>
+                                </RadioButton>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
+
+        <Grid Grid.Row="6"
+              Margin="15,0,20,5"
+              HeightRequest="160"
+              VerticalOptions="End">
+            <Border Grid.RowSpan="3"
+                    Stroke="{StaticResource BGGray}"
+                    BackgroundColor="{StaticResource Gray900}"
+                    HeightRequest="150"
+                    StrokeShape="RoundRectangle 30,30,30,30"
+                    StrokeThickness="2">
+                <Grid RowDefinitions=".2*,.6*,.2*" ColumnDefinitions="*">
+                    <Image Grid.RowSpan="3" 
+                           Aspect="AspectFill" 
+                           Source="image3"/>
+                    <RoundRectangle Grid.RowSpan="3"
+                                                CornerRadius="30"
+                                                HeightRequest="300"
+                                                Opacity=".7">
+                        <RoundRectangle.Fill>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Offset="0" Color="Transparent"/>
+                                <GradientStop Offset="1" Color="#030005"/>
+                            </LinearGradientBrush>
+                        </RoundRectangle.Fill>
+                    </RoundRectangle>
+
+                    <VerticalStackLayout Grid.Column="3"  Margin="15,15,0,0">
+                        <Label FontSize="16"
+                               TextColor="White"
+                               Text="Become a great designer?"/>
+                        <Label Text="Achmad Q" TextColor="Gray"/>
+                    </VerticalStackLayout>
+
+
+                    <VerticalStackLayout Grid.Row="2" Margin="15,15,0,0">
+                        <Grid RowDefinitions=".1*,.1*,.2*,.2*" ColumnDefinitions="*,*">
+
+                            <Label Text="45min"
+                                   FontSize="14"
+                                   TextColor="DarkGray"/>
+
+
+                            <StackLayout Grid.RowSpan="3"
+                                         Grid.Column="3"
+                                         VerticalOptions="Center" 
+                                         HorizontalOptions="CenterAndExpand"
+                                         Grid.ColumnSpan="3">
+                                <Button Text="designer"
+                                        CornerRadius="50"
+                                        HeightRequest="50"
+                                        WidthRequest="100"
+                                        Margin="-35"
+                                        BackgroundColor="{StaticResource BPrimary}"
+                                        TextColor="{StaticResource White}"/>
+                            </StackLayout>
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Grid>
+                <Border.Shadow>
+                    <Shadow Brush="Black"
+                            Radius="40"
+                            Offset="20,20"
+                            Opacity="0.8"/>
+                </Border.Shadow>
+            </Border>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

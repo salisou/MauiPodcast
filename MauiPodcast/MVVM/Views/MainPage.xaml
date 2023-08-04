@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundImageSource="fondo"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="MauiPodcast.MainPage">
+
+    <Page.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="#010101"/>
+    </Page.Behaviors>
+
+
+    <Grid  RowDefinitions=".1*, .1*, .55*, .15*, .15*">
+        <!--Header-->
+        <Grid ColumnDefinitions="*,*,*" Margin="20">
+
+            <Grid Grid.Column="1">
+                <Label Grid.Column="1"
+                       FontSize="30"
+                       Text="Pod"
+                       TextColor="{StaticResource BPrimary}"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       HorizontalTextAlignment="Start"/>
+                <Label Grid.Column="2"
+                       FontSize="30"
+                       FontAttributes="None"
+                       Margin="0,0,10,0"
+                       Text="box"
+                       TextColor="WHite"
+                       VerticalOptions="End"
+                       HorizontalTextAlignment="End"/>
+            </Grid>
+
+        </Grid>
+        <Grid Grid.Row="3" 
+              RowDefinitions=".5*,.5*,.5*,.1*" 
+              Margin="0,-60,5,0">
+
+            <StackLayout Orientation="Horizontal">
+
+                <Image Source="cuffie.png"
+                       Margin="70,0,0,0"/>
+
+                <StackLayout >
+
+                    <Label Text="Listen"
+                           Padding="-90,0,0,0"
+                           FontSize="50"
+                           Margin="90,-10,0,0"
+                           TextColor="#FFFFFF"/>
+                </StackLayout>
+            </StackLayout>            
+            <Label Text="Everytime"
+                   Grid.Row="1"
+                   FontSize="50"
+                   FontAttributes="Bold"
+                   Margin="80,-10,0,0"
+                   TextColor="{StaticResource BPrimary}"/>
+        </Grid>
+
+
+        <Grid Grid.Row="4" RowDefinitions=".5*,.3*,.2*,.1*">
+            <Button Text="Login" 
+                    x:Name="btnNavigate"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    BackgroundColor="{StaticResource BPrimary}"
+                    Margin="40,0,40,0"
+                    CornerRadius="50"
+                    TextColor="White"
+                    HeightRequest="85"
+                    VerticalOptions="End"
+                    Clicked="btnNavigate_Clicked"/>
+
+                <VerticalStackLayout Margin="70,50,0,0" Spacing="10" Padding="30">
+                <Label FontSize="16" 
+                       LineHeight="1.3" 
+                       VerticalOptions="Start" 
+                       HorizontalTextAlignment="Start" >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontFamily="RubikRegular"
+                                  Text="Don't have an account?  "
+                                  TextColor="White"/>
+
+                            <Span Text="Sign up"
+                                  FontFamily="RubikRegular"
+                                  TextColor="{StaticResource Brown}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

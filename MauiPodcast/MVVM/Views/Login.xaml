@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiPodcast.MVVM.Views.Login"
+             BackgroundColor="{StaticResource DarkBack}">
+
+
+    <Grid Margin="15" RowDefinitions=".40*,.5*,.5*,.1*">
+        <Border Grid.RowSpan="2">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20,20,20,20"/>
+            </Border.StrokeShape>
+
+            <Grid RowDefinitions=".3*,.7">
+                <Image Grid.RowSpan="2"
+                       Aspect="Center"
+                       BackgroundColor="{StaticResource Gray100}"
+                       Source="logo1"/>
+                    <Grid ColumnDefinitions="*,*" Margin="10,24,40,0">
+
+                        <Grid Grid.Column="2">
+                            <Label Grid.Column="1"
+                                   FontSize="30"
+                                   Text="Pod"
+                                   TextColor="{StaticResource BPrimary}"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Start"
+                                   HorizontalTextAlignment="Start"/>
+                            <Label Grid.Column="2"
+                                   FontSize="30"
+                                   Margin="5,0,0,0"
+                                   FontAttributes="None"
+                                   Text="box"
+                                   TextColor="White"
+                                   VerticalOptions="Start"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="End"/>
+                        </Grid>
+
+                    </Grid>
+
+                <Grid ColumnDefinitions="auto,auto,auto" Margin="30,30,0,0">
+                    <Label FontFamily="Icons"
+                           FontSize="25"
+                           Text="Welcome to"
+                           HorizontalOptions="Center"
+                           TextColor="{StaticResource LightGray}"/>
+
+
+                </Grid>
+            </Grid>
+            <Border.Shadow>
+                <Shadow Brush="Black"
+             Radius="40"
+             Offset="20,20"
+             Opacity="0.8"/>
+            </Border.Shadow>
+        </Border>
+
+        <Border Grid.Row="1"
+                Margin="20"
+                HeightRequest="300"
+                BackgroundColor="{StaticResource BPrimary}"
+                Grid.RowSpan="2"
+                Stroke="{StaticResource White}">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="30,30,30,30" />
+            </Border.StrokeShape>
+
+
+
+            <Grid RowDefinitions="*,50,50,auto,40,40,*" Margin="30">
+                <Label Text="Login"  HeightRequest="100" FontSize="25" TextColor="Gray" HorizontalOptions="Center"/>
+                <StackLayout Grid.Row="1" Margin="0,-40,0,0">
+                    <Frame BackgroundColor="White" 
+                           BorderColor="LightSeaGreen"
+                           Padding="0"
+                           HorizontalOptions="FillAndExpand"
+                           CornerRadius="30">
+                        <StackLayout>
+                            <Frame BackgroundColor="SkyBlue"
+                                   HeightRequest="40" 
+                                   WidthRequest="40"
+                                   CornerRadius="30"
+                                   HorizontalOptions="Start"
+                                   Padding="0"
+                                   Margin="5">
+                                <Image Source="email" Aspect="AspectFill" Margin="0"/>
+                            </Frame>
+                            <Entry Margin="45,-40,20,0"
+                                   x:Name="Entry_Email"
+                                   Placeholder="Email" 
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame BackgroundColor="White" 
+                           BorderColor="LightSeaGreen"
+                           Padding="0"
+                           Margin="0,20"
+                           HorizontalOptions="FillAndExpand"
+                           CornerRadius="30">
+                        <StackLayout>
+                            <Frame BackgroundColor="SkyBlue"
+                                   HeightRequest="40" 
+                                   WidthRequest="40"
+                                   CornerRadius="30"
+                                   HorizontalOptions="Start"
+                                   Padding="0"
+                                   Margin="5">
+                                <Image Source="key" Aspect="AspectFill" Margin="0"/>
+                            </Frame>
+                            <Entry Margin="45,-40,20,0"
+                                   x:Name="Entry_Password"
+                                   Placeholder="Password" 
+                                   IsPassword="True"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+
+                </StackLayout>
+                
+            </Grid>
+            <Border.Shadow>
+                <Shadow Brush="Black"
+                        Radius="50"
+                        Offset="20,10"
+                        Opacity="0.8"/>
+            </Border.Shadow>
+        </Border>
+        <Border Grid.Row="2"
+                Margin="50,50,50,0"
+                HeightRequest="100"
+                WidthRequest="100"
+                Grid.RowSpan="1"
+                BackgroundColor="{StaticResource White}"
+                Stroke="{StaticResource White}">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="50,50,50,50" />
+            </Border.StrokeShape>
+            <ImageButton Source="next"
+                         x:Name="bbtnLogin"
+                         HeightRequest="70"
+                         Margin="20"
+                         WidthRequest="70"
+                         Clicked="bbtnLogin_Clicked"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"/>
+        </Border>
+
+    </Grid>
+    
+</ContentPage>
